@@ -16,7 +16,7 @@ public class aTest {
 	
 	public static WebDriver driver;
 	
-	@BeforeTest
+	@BeforeTest(description= "This is before test")
 	public void before() {
 		
 		System.out.println("before starting the test");
@@ -25,11 +25,12 @@ public class aTest {
 		}
 
 	
-	@Test
+	@Test(description= "This is the test")
 	public void test(){
 		
 		System.out.println("Starting the test");
 		driver.get("https://www.google.com/");
+		driver.manage().window().maximize();
 		driver.findElement(By.name("q")).sendKeys("code academy");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.name("btnK")).click();
@@ -37,11 +38,10 @@ public class aTest {
 		driver.findElement(By.xpath("//*[@id=\"rso\"]/div[1]/div/div/div/div[1]/a/h3")).click();
 	}
 	
-	@AfterTest
+	@AfterTest(description= "This is after the test")
 	public void after() {
 		
 		System.out.println("After completing the test");
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.close();
 	}
 }
